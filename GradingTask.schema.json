@@ -1,0 +1,102 @@
+{
+  "type": "object",
+  "title": "GradingTask",
+  "description": "Задача на повышение сотрудника до нового грейда с указанием матрицы компетенций и сроков выполнения",
+  "required": [
+    "taskId",
+    "employeeId",
+    "assignedBy",
+    "targetGrade",
+    "competencyMatrixId",
+    "startDate",
+    "dueDate",
+    "status"
+  ],
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Уникальный идентификатор задачи",
+      "example": "task_789"
+    },
+    "employeeId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "ID сотрудника, который проходит грейдирование",
+      "example": "emp_123"
+    },
+    "assignedBy": {
+      "type": "string",
+      "format": "uuid",
+      "description": "ID сотрудника HR или руководителя, назначившего задачу",
+      "example": "hr_456"
+    },
+    "targetGrade": {
+      "type": "string",
+      "pattern": "^[JMS][1-9]$",
+      "description": "Целевой грейд для повышения",
+      "example": "S1"
+    },
+    "competencyMatrixId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "ID матрицы компетенций, которую нужно освоить",
+      "example": "matrix_010"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Дата начала выполнения задачи в формате YYYY-MM-DD",
+      "example": "2024-03-01"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Планируемая дата завершения в формате YYYY-MM-DD",
+      "example": "2024-06-30"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["not_started", "in_progress", "completed", "overdue", "cancelled"],
+      "description": "Текущий статус выполнения задачи",
+      "example": "in_progress"
+    },
+    "progress": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Процент выполнения задачи",
+      "example": 35
+    },
+    "completedCompetencies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "Список ID выполненных компетенций",
+      "example": ["comp_01", "comp_03"]
+    },
+    "notes": {
+      "type": "string",
+      "description": "Дополнительные комментарии к задаче",
+      "example": "Сотрудник проходит обучение по методологии XYZ"
+    }
+  },
+  "additionalProperties": false,
+  "example": {
+    "gradingTask": {
+      "taskId": "task_789",
+      "employeeId": "emp_123",
+      "assignedBy": "hr_456",
+      "targetGrade": "S1",
+      "competencyMatrixId": "matrix_010",
+      "startDate": "2024-03-01",
+      "dueDate": "2024-06-30",
+      "status": "in_progress",
+      "progress": 35,
+      "completedCompetencies": ["comp_01", "comp_03"],
+      "notes": "Сотрудник проходит обучение по методологии XYZ"
+    }
+  }
+}
