@@ -25,7 +25,7 @@
     },
     "title": {
       "type": "string",
-      "description": "Человекочитаемое название грейда.",
+      "description": "Полное название грейда.",
       "examples": ["Junior Developer", "Middle Analyst Level 2"]
     },
     "description": {
